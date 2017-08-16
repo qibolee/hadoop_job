@@ -43,7 +43,7 @@ path_mapper="${local_dir}/mapper.py"
 path_reducer="${local_dir}/reducer.py"
 path_file="${local_dir}/file"
 # local merge data
-path_merge_data="/home/work/shangbai/alert_layer_charge/data/${static_date}/merge_data"
+path_merge_data="${local_dir}/data/${static_date}/merge_data"
 
 
 function run_hadoop(){

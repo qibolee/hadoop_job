@@ -18,54 +18,51 @@ prefix_thang="hdfs://nmg01-taihang-hdfs.dmop.baidu.com:54310"
 prefix_khan="hdfs://nmg01-khan-hdfs.dmop.baidu.com:54310"
 prefix_mulan="hdfs://nmg01-mulan-hdfs.dmop.baidu.com:54310"
 # hadoop bin
-hadoop_thang="/home/liqibo/software/hadoop-client-taihang/hadoop/bin/hadoop"
-hadoop_khan="/home/liqibo/software/hadoop-client-nmg/hadoop/bin/hadoop"
-hadoop_mulan="/home/liqibo/software/mulan-hadoop-client/hadoop/bin/hadoop"
+bin_thang="/home/liqibo/software/hadoop-client-taihang/hadoop/bin/hadoop"
+bin_khan="/home/liqibo/software/hadoop-client-nmg/hadoop/bin/hadoop"
+bin_mlan="/home/liqibo/software/mulan-hadoop-client/hadoop/bin/hadoop"
+# shitu log
+shitu_222_223="${prefix_khan}/app/dt/udw/release/app/fengchao/shitu/222_223"
+shitu_400="${prefix_khan}/app/dt/udw/release/app/fengchao/shitu/400"
+shitu_small="${prefix_khan}/app/ecom/fcr/dynamic_creative/dp/small_shitu/wise"
 
 # using hadoop
 hadoop_prefix="${prefix_khan}"
-hadoop_bin="${hadoop_khan}"
+hadoop_bin="${bin_khan}"
+hadoop_shitu="${shitu_222_223}"
 # static date
-[[ -z $1 ]] && static_date=`date -d "1 day ago" +"%Y%m%d"` || static_date=$1
+begin_date="20170721"
+end_date="20170727"
+range_date="${begin_date}-${end_date}"
 # hadoop output dir
-hadoop_output="${prefix_khan}/app/ecom/fcr/liqibo/test/test/${static_date}"
+hadoop_output="-output ${prefix_khan}/app/ecom/fcr/liqibo/test/test/${range_date}"
 
 # local data
-local_dir="/home/work/shangbai/alert_layer_charge/bin"
+local_dir="/home/liqibo/liqibo/dev/hadoop"
 path_mapper="${local_dir}/mapper.py"
 path_reducer="${local_dir}/reducer.py"
 path_file="${local_dir}/file"
 # local merge data
-path_merge_data="/home/work/shangbai/alert_layer_charge/data/${static_date}/merge_data"
+path_merge_data="${local_dir}/data/${static_date}/merge_data"
 
 # generate input file list from date range
 function list_input(){
-	# full shitu
-	prefix_input="${prefix_khan}/app/dt/udw/release/app/fengchao/shitu/222_223"
-	postfix_input="*/part-*"
-	# feed
-	# prefix_input="${hadoop_prefix}/app/dt/udw/release/app/fengchao/shitu/400"
-	# postfix_input="*/part-*"
-	# small shitu
-	# prefix_input="${hadoop_prefix}/app/ecom/fcr/dynamic_creative/dp/small_shitu/wise"
-	# postfix_input="*/part-*"
-
 	if [[ $# == 1 ]]
 	then
-		echo "-input ${prefix_input}/$1/${postfix_input}"
+		echo "-input ${hadoop_shitu}/$1/*/part-*"
 	elif [[ $# == 2 ]]
 	then
 		static_date=$1
 		while [[ ${static_date} -le $2 ]]
 		do
-			echo "-input ${prefix_input}/${static_date}/${postfix_input}"
+			echo "-input ${hadoop_shitu}/${static_date}/*/part-*"
 			static_date=`date -d"${static_date} 1 day" +"%Y%m%d"`
 		done
 	fi
 }
 
 # hadoop input file list
-hadoop_input=`list_input ${static_date}`
+hadoop_input=`list_input ${begin_date} ${end_date}`
 
 function run_hadoop(){
 	# clear output
@@ -75,7 +72,7 @@ function run_hadoop(){
 		#-jobconf mapred.job.queue.name=fcr-adu \
 	${hadoop_bin} streaming \
 		${hadoop_input} \
-		-output ${hadoop_output} \
+		${hadoop_output} \
 		-mapper "python27/bin/python2.7 mapper.py" \
 		-reducer "python27/bin/python2.7 reducer.py file" \
 		-file "${path_mapper}" \

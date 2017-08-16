@@ -35,7 +35,7 @@ hadoop_shitu="${shitu_222_223}"
 # hadoop input dir
 hadoop_input="-input ${hadoop_shitu}/${static_date}/*/part-*"
 # hadoop output dir
-hadoop_output="-output ${prefix_khan}/app/ecom/fcr/liqibo/test/test/${static_date}"
+hadoop_output="${prefix_khan}/app/ecom/fcr/liqibo/test/test/${static_date}"
 
 # local data
 local_dir="/home/liqibo/liqibo/dev/hadoop"
@@ -54,7 +54,7 @@ function run_hadoop(){
 		#-jobconf mapred.job.queue.name=fcr-adu \
 	${hadoop_bin} streaming \
 		${hadoop_input} \
-		${hadoop_output} \
+		-output ${hadoop_output} \
 		-mapper "python27/bin/python2.7 mapper.py" \
 		-reducer "python27/bin/python2.7 reducer.py file" \
 		-file "${path_mapper}" \

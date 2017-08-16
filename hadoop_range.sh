@@ -35,7 +35,7 @@ begin_date="20170721"
 end_date="20170727"
 range_date="${begin_date}-${end_date}"
 # hadoop output dir
-hadoop_output="-output ${prefix_khan}/app/ecom/fcr/liqibo/test/test/${range_date}"
+hadoop_output="${prefix_khan}/app/ecom/fcr/liqibo/test/test/${range_date}"
 
 # local data
 local_dir="/home/liqibo/liqibo/dev/hadoop"
@@ -72,7 +72,7 @@ function run_hadoop(){
 		#-jobconf mapred.job.queue.name=fcr-adu \
 	${hadoop_bin} streaming \
 		${hadoop_input} \
-		${hadoop_output} \
+		-output ${hadoop_output} \
 		-mapper "python27/bin/python2.7 mapper.py" \
 		-reducer "python27/bin/python2.7 reducer.py file" \
 		-file "${path_mapper}" \

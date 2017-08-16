@@ -33,7 +33,7 @@ hadoop_shitu="${shitu_222_223}"
 # static date
 [[ -z $1 ]] && static_date=`date -d "1 day ago" +"%Y%m%d"` || static_date=$1
 # hadoop input dir
-hadoop_input="-input ${hadoop_shitu}/${static_date}/*/part-*"
+hadoop_input="${hadoop_shitu}/${static_date}/*/part-*"
 # hadoop output dir
 hadoop_output="${prefix_khan}/app/ecom/fcr/liqibo/test/test/${static_date}"
 
@@ -53,7 +53,7 @@ function run_hadoop(){
 		#-outputformat "org.apache.hadoop.mapred.lib.SuffixMultipleTextOutputFormat" \
 		#-jobconf mapred.job.queue.name=fcr-adu \
 	${hadoop_bin} streaming \
-		${hadoop_input} \
+		-input ${hadoop_input} \
 		-output ${hadoop_output} \
 		-mapper "python27/bin/python2.7 mapper.py" \
 		-reducer "python27/bin/python2.7 reducer.py file" \

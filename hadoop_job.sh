@@ -28,13 +28,13 @@ hadoop_bin="${hadoop_khan}"
 # static date
 [[ -z $1 ]] && static_date=`date -d "1 day ago" +"%Y%m%d"` || static_date=$1
 # hadoop output dir
-hadoop_output="${prefix_khan}/app/ecom/fcr/liqibo/alert_layer_charge/${static_date}"
+hadoop_output="${prefix_khan}/app/ecom/fcr/liqibo/test/test/${static_date}"
 
 # local data
 local_dir="/home/work/shangbai/alert_layer_charge/bin"
 path_mapper="${local_dir}/mapper.py"
 path_reducer="${local_dir}/reducer.py"
-path_file=""
+path_file="${local_dir}/file"
 # local merge data
 path_merge_data="/home/work/shangbai/alert_layer_charge/data/${static_date}/merge_data"
 

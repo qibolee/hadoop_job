@@ -22,14 +22,14 @@ bin_thang="/home/liqibo/software/hadoop-client-taihang/hadoop/bin/hadoop"
 bin_khan="/home/liqibo/software/hadoop-client-nmg/hadoop/bin/hadoop"
 bin_mlan="/home/liqibo/software/mulan-hadoop-client/hadoop/bin/hadoop"
 # shitu log
-shitu_222_223="${prefix_khan}/app/dt/udw/release/app/fengchao/shitu/222_223"
-shitu_400="${prefix_khan}/app/dt/udw/release/app/fengchao/shitu/400"
-shitu_small="${prefix_khan}/app/ecom/fcr/dynamic_creative/dp/small_shitu/wise"
+khan_222_223="${prefix_khan}/app/dt/udw/release/app/fengchao/shitu/222_223"
+khan_400="${prefix_khan}/app/dt/udw/release/app/fengchao/shitu/400"
+khan_small="${prefix_khan}/app/ecom/fcr/dynamic_creative/dp/small_shitu/wise"
 
 # using hadoop
 hadoop_prefix="${prefix_khan}"
 hadoop_bin="${bin_khan}"
-hadoop_shitu="${shitu_222_223}"
+hadoop_shitu="${khan_222_223}"
 # static date
 begin_date="20170721"
 end_date="20170727"
@@ -39,11 +39,15 @@ hadoop_output="${prefix_khan}/app/ecom/fcr/liqibo/test/test/${range_date}"
 
 # local data
 local_dir="/home/liqibo/liqibo/dev/hadoop"
-path_mapper="${local_dir}/mapper.py"
-path_reducer="${local_dir}/reducer.py"
+bin_dir="${local_dir}/bin"
+data_dir="${local_dir}/data"
+log_dir="${local_dir}/log"
+
+path_mapper="${bin_dir}/mapper.py"
+path_reducer="${bin_dir}/reducer.py"
 path_file="${local_dir}/file"
 # local merge data
-path_merge_data="${local_dir}/data/${static_date}/merge_data"
+path_merge_data="${local_dir}/data/${range_date}/merge_data"
 
 # generate input file list from date range
 function list_input(){

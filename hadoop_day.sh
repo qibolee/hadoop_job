@@ -31,7 +31,8 @@ hadoop_prefix="${prefix_khan}"
 hadoop_bin="${bin_khan}"
 hadoop_shitu="${shitu_222_223}"
 # static date
-[[ -z $1 ]] && static_date=`date -d "1 day ago" +"%Y%m%d"` || static_date=$1
+#[[ -z $1 ]] && static_date=`date -d "1 day ago" +"%Y%m%d"` || static_date=$1
+[[ $# -eq 1 ]] && static_date=$1 || static_date=`date -d "1 day ago" +"%Y%m%d"`
 # hadoop input dir
 hadoop_input="${hadoop_shitu}/${static_date}/*/part-*"
 # hadoop output dir

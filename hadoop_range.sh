@@ -47,7 +47,7 @@ path_mapper="${bin_dir}/mapper.py"
 path_reducer="${bin_dir}/reducer.py"
 path_file="${local_dir}/file"
 # local merge data
-path_merge_data="${local_dir}/data/${range_date}/merge_data"
+path_merge_data="${data_dir}/${range_date}/merge_data"
 
 # generate input file list from date range
 function list_input(){

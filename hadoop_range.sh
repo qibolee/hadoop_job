@@ -33,7 +33,7 @@ hadoop_shitu="${khan_222_223}"
 # static date
 begin_date="20170721"
 end_date="20170727"
-range_date="${begin_date}-${end_date}"
+range_date="${begin_date}_${end_date}"
 # hadoop output dir
 hadoop_output="${prefix_khan}/app/ecom/fcr/liqibo/test/test/${range_date}"
 

@@ -3,7 +3,7 @@
 
 
 ################################################
-# File Name		: hadoop_job.sh
+# File Name		: hadoop_range.sh
 # Author		: liqibo(liqibo@baidu.com)
 # Create Time	: 2017/08/01
 # Brief			: hadoop job
